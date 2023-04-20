@@ -1,0 +1,8 @@
+prefix=/home/jaimenunez/tesis2023/install
+
+Name: ur3_sim_gazebo
+Description: Description of ur3_sim_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
