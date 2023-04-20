@@ -44,15 +44,6 @@ int main(int argc, char** argv)
   const moveit::core::JointModelGroup* joint_model_group =
       move_group_interface.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
 
-  // Second group for control de gripper.
-  static const std::string PLANNING_GROUP2 = "gripper";
-
-  moveit::planning_interface::MoveGroupInterface move_group_interface_2(PLANNING_GROUP2);
-  moveit::planning_interface::PlanningSceneInterface planning_scene_interface_2;
-
-  const moveit::core::JointModelGroup* joint_model_group_2 =
-      move_group_interface_2.getCurrentState()->getJointModelGroup(PLANNING_GROUP2);
-
   // We can print the name of the reference frame for this robot.
   ROS_INFO_NAMED("tutorial", "Planning frame: %s", move_group_interface.getPlanningFrame().c_str());
 
