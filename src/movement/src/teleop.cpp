@@ -87,7 +87,6 @@ if(movement == 'w'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseW;
-  target_poseW.orientation.x = 0.0;
 
   target_poseW.position.x = actual.pose.position.x + 0.01;
   target_poseW.position.y = actual.pose.position.y;
@@ -113,7 +112,6 @@ if(movement == 's'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseS;
-  target_poseS.orientation.x = 0.0;
 
   target_poseS.position.x = actual.pose.position.x - 0.01;
   target_poseS.position.y = actual.pose.position.y;
@@ -139,7 +137,6 @@ if(movement == 'a'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseA;
-  target_poseA.orientation.x = 0.0;
 
   target_poseA.position.x = actual.pose.position.x;
   target_poseA.position.y = actual.pose.position.y + 0.01;
@@ -165,7 +162,6 @@ if(movement == 'd'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseD;
-  target_poseD.orientation.x = 0.0;
 
   target_poseD.position.x = actual.pose.position.x;
   target_poseD.position.y = actual.pose.position.y - 0.01;
@@ -191,7 +187,6 @@ if(movement == 'u'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseU;
-  target_poseU.orientation.x = 0.0;
 
   target_poseU.position.x = actual.pose.position.x;
   target_poseU.position.y = actual.pose.position.y;
@@ -217,7 +212,6 @@ if(movement == 'j'){
   actual = move_group_interface.getCurrentPose();
 
   geometry_msgs::Pose target_poseJ;
-  target_poseJ.orientation.x = 0.0;
 
   target_poseJ.position.x = actual.pose.position.x;
   target_poseJ.position.y = actual.pose.position.y;
