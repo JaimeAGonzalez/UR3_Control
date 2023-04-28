@@ -10,14 +10,34 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
  
+#include <algorithm>
 #include <sstream>
 
+#include <string>
+#include <vector>
 
 #include <iostream>
 #include <stdio.h>
 
 // tau = 2*pi. Un tau es una rotacion en radianes.
 const double tau = 2 * M_PI;
+
+std::vector<double> convertToDoubleArray(std::string input)
+{
+    std::replace(input.begin(), input.end(), ',', ' ');
+
+    std::istringstream stringReader{ input };
+
+    std::vector<double> result;
+
+    int number;
+    while (stringReader >> number)
+    {
+        result.push_back(number);
+    }
+
+    return result;
+}
 
 int main(int argc, char** argv)
 {
@@ -60,7 +80,7 @@ int main(int argc, char** argv)
  int pos=0;
 
 // Code inicialization
- while(pos != 14)
+ while(true)
 {
 
 printf("\n\n Types of movements:\n\n w: Forward \n\n s Backward \n\n a: Left \n\n d: right \n\n");
@@ -68,19 +88,30 @@ setbuf(stdin,NULL);
 scanf("%c",&movement);
 
 // Initial pose
-if(movement == 'r'){
+if(movement == 't'){
 
   // Get actual articular pose of the joints
   std::vector<double> joints;
   joints = move_group_interface.getCurrentJointValues();
 
-  // New goal positions
-  joints.at(0) = tau/2;
-  move_group_interface.setJointValueTarget(joints);
-  move_group_interface.move();
+  // Ask for articular position of each Joint
+  std::string inputString;
+  std::cout << "Enter the articular values for each Joint:";
+  std::getline(std::cin, inputString);
+  std_msgs::String msg;
 
+  std::vector<double> jointArray = convertToDoubleArray(inputString);
+  
+  for (int i = 0; i < jointArray.size(); ++i){
+  
+    // New goal positions
+    joints.at(i) = jointArray[i];
+    move_group_interface.setJointValueTarget(joints);
+    move_group_interface.move();
+    printf("\n\n Articular joints already set \n\n");
+  
+  }
 }
-
 // Forward
 if(movement == 'w'){
   geometry_msgs::PoseStamped actual;
