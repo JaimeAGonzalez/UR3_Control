@@ -104,7 +104,7 @@ if(movement == 't'){
   
   for (int i = 0; i < jointArray.size(); ++i){
   
-    // New goal positions
+    // New goal positions for each joint
     joints.at(i) = jointArray[i];
     move_group_interface.setJointValueTarget(joints);
     move_group_interface.move();
