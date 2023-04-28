@@ -20,6 +20,7 @@
 #include <stdio.h>
 
 // tau = 2*pi. Un tau es una rotacion en radianes.
+using namespace std;
 const double tau = 2 * M_PI;
 
 std::vector<double> convertToDoubleArray(std::string input)
@@ -77,10 +78,11 @@ int main(int argc, char** argv)
 
   // Start 
  char movement; 
- int pos=0;
+ int pos = 0;
+ bool flag = true;
 
 // Code inicialization
- while(true)
+ while(flag)
 {
 
 printf("\n\n Types of movements:\n\n w: Forward \n\n s Backward \n\n a: Left \n\n d: right \n\n");
@@ -89,28 +91,29 @@ scanf("%c",&movement);
 
 // Initial pose
 if(movement == 't'){
-
+  
   // Get actual articular pose of the joints
+  flag = false;
   std::vector<double> joints;
   joints = move_group_interface.getCurrentJointValues();
 
   // Ask for articular position of each Joint
   std::string inputString;
   std::cout << "Enter the articular values for each Joint:";
-  std::getline(std::cin, inputString);
-  std_msgs::String msg;
+  std::cin >> inputString;
 
   std::vector<double> jointArray = convertToDoubleArray(inputString);
   
-  for (int i = 0; i < jointArray.size(); ++i){
-  
-    // New goal positions for each joint
-    joints.at(i) = jointArray[i];
-    move_group_interface.setJointValueTarget(joints);
-    move_group_interface.move();
-    printf("\n\n Articular joints already set \n\n");
-  
+  // New goal positions
+  for(int i=0; i < jointArray.size(); i++){
+    joints[i] = jointArray[i]*tau/360;
   }
+  
+  move_group_interface.setJointValueTarget(joints);
+  move_group_interface.move();
+  flag = true;
+  printf("\n\n Articular joints already set \n\n");
+  
 }
 // Forward
 if(movement == 'w'){
