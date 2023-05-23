@@ -55,7 +55,7 @@ int main(int argc, char** argv)
   
   // Group definition in order to move the manipulator
   
-  static const std::string PLANNING_GROUP = "manipulator";
+  static const std::string PLANNING_GROUP = "arm";
   moveit::planning_interface::MoveGroupInterface move_group_interface(PLANNING_GROUP);
 
   // Class :planning_interface:`PlanningSceneInterface` for put and eliminate objects and collisions
