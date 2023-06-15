@@ -158,6 +158,12 @@ include
 #############
 ## Testing ##
 #############
+add_executable(arm_movement_node src/arm_movement_node.cpp)
+target_link_libraries(arm_movement_node ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+install(TARGETS teleop DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
 catkin_install_python(PROGRAMS src/speech_recognition_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
