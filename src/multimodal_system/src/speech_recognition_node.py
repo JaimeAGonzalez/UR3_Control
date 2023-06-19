@@ -16,10 +16,10 @@ class speech_recognition_node:
         self.not_identify = True
         self.target_words = ["motor", "caja", "protoboard", "cables"]
         
-        # Publisher
+        # Publisher and subscriber
         self.pub_word = rospy.Publisher('word_detector', String, queue_size=10)
         self.pub_reset_arm = rospy.Publisher('reset_arm', Bool, queue_size=10)
-        self.subs_finish = rospy.Subscriber("finish", Bool, self.callback_finish)
+        self.subs_finish = rospy.Subscriber('finish', Bool, self.callback_finish)
         self.rate = rospy.Rate(10) 
 
         # Extract target word
@@ -75,7 +75,7 @@ class speech_recognition_node:
         else:
             pass
     
-    def callback_finish(self,msg_finish):
+    def callback_finish(self, msg_finish):
         self.flag_finish = msg_finish.data
 
 if __name__ == '__main__':
