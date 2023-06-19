@@ -76,6 +76,7 @@ class speech_recognition_node:
             pass
     
     def callback_finish(self, msg_finish):
+        # Extract the confirmation of the pick-up
         self.flag_finish = msg_finish.data
 
 if __name__ == '__main__':
