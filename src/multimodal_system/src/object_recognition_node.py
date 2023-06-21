@@ -98,7 +98,7 @@ class object_recognition_node:
             self.flag_finish = True
         
         elif self.counter >= 70:
-            print(self.object_target + ' is NOT in the experimental scene)
+            print(self.object_target + ' is NOT in the experimental scene')
             
 if __name__ == '__main__':
     try:
