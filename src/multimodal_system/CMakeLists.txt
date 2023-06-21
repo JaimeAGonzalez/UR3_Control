@@ -172,6 +172,10 @@ catkin_install_python(PROGRAMS src/object_recognition_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+catkin_install_python(PROGRAMS src/arm_movement_node.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_multimodal_system.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
