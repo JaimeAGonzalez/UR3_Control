@@ -35,7 +35,7 @@ class object_recognition_node:
                 self.pub_object_confirmation.publish(self.msg_object_confirmation)
                 self.identify_objects()
                 
-            else if self.flag_finish == True:
+            elif self.flag_finish == True:
                 self.msg_object_confirmation.data = self.flag_finish
                 self.pub_object_confirmation.publish(self.msg_object_confirmation)
                 print(self.object_target + ' is in the experimental scene')
