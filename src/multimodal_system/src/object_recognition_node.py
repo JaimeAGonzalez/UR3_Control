@@ -18,8 +18,8 @@ class object_recognition_node:
         self.flag_object = False
         self.flag_finish = False
         self.not_identify = True 
-        cap = cv2.VideoCapture(0)
-        model = torch.hub.load('ultralytics/yolov5', 'custom', path='/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/best.pt')
+        self.cap = cv2.VideoCapture(0)
+        self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/best.pt')
         
         # Publisher and subscriber
         self.pub_coordinates_arm = rospy.Publisher('coordinates', Float64MultiArray, queue_size=10)
@@ -61,8 +61,8 @@ class object_recognition_node:
         self.flag_object = True
             
     def identify_objects(self):
-        ret, frame = cap.read()
-        detect = model(frame)
+        ret, frame = self.cap.read()
+        detect = self.model(frame)
             
         # Identification
         cv2.imshow('Object detection', np.squeeze(detect.render()))
