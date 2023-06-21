@@ -76,28 +76,28 @@ class object_recognition_node:
             self.not_identify = False
             self.flag_finish = True
             
-        else if detect.pandas().xyxy[0]['name'].values == 'caja' and self.object_target == 'caja':
+        elif detect.pandas().xyxy[0]['name'].values == 'caja' and self.object_target == 'caja':
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['1', '1', '1']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
             
-        else if detect.pandas().xyxy[0]['name'].values == 'protoboard' and self.object_target == 'protoboard':
+        elif detect.pandas().xyxy[0]['name'].values == 'protoboard' and self.object_target == 'protoboard':
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['2', '2', '2']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
         
-        else if detect.pandas().xyxy[0]['name'].values == 'cables' and self.object_target == 'cables':
+        elif detect.pandas().xyxy[0]['name'].values == 'cables' and self.object_target == 'cables':
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['3', '3', '3']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
         
-        else if self.counter >= 70:
+        elif self.counter >= 70:
             print(self.object_target + ' is NOT in the experimental scene)
             
 if __name__ == '__main__':
