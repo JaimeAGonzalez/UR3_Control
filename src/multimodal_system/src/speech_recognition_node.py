@@ -73,7 +73,9 @@ class speech_recognition_node:
                 except sr.RequestError as e:
                     print("Could not request results from Google's speech recognition service; {0}".format(e))
         else:
-            pass
+            # Reset flag arm
+            self.msg_reset.data = False
+            self.pub_reset_arm.publish(self.msg_reset)
     
     def callback_finish(self, msg_finish):
         # Extract the confirmation of the pick-up
