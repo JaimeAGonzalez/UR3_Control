@@ -14,7 +14,7 @@ class object_recognition_node:
         self.msg_object_confirmation = Bool()
         
         # Create recognition instance
-        self.couter = 0
+        self.counter = 0
         self.flag_object = False
         self.flag_finish = False
         self.not_identify = True 
@@ -51,7 +51,7 @@ class object_recognition_node:
             self.flag_object = False
             self.flag_finish = False
             self.not_identify = True 
-            self.couter = 0
+            self.counter = 0
         else:
             pass
              
