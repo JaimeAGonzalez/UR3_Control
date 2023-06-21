@@ -25,7 +25,7 @@ class object_recognition_node:
         self.pub_coordinates_arm = rospy.Publisher('coordinates', Float64MultiArray, queue_size=10)
         self.pub_object_confirmation = rospy.Publisher('object_confirmation', Bool, queue_size=10)
         self.subs_reset_system = rospy.Subscriber('reset_arm', Bool, self.callback_reset_system)
-        self.subs_speech_object = rospy.Subscriber('reset_arm', String, self.callback_speech_object)
+        self.subs_speech_object = rospy.Subscriber('word_detector', String, self.callback_speech_object)
         self.rate = rospy.Rate(10) 
 
         # Extract target object 
