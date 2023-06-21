@@ -19,7 +19,7 @@ class object_recognition_node:
         self.flag_finish = False
         self.not_identify = True 
         cap = cv2.VideoCapture(0)
-        model = torch.hub.load('ultralytics/yolov5', 'custom', path='/UR3_Control/src/multimodal_system/src/best.pt')
+        model = torch.hub.load('ultralytics/yolov5', 'custom', path='home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/best.pt')
         
         # Publisher and subscriber
         self.pub_coordinates_arm = rospy.Publisher('coordinates', Float64MultiArray, queue_size=10)
