@@ -92,7 +92,7 @@ class object_recognition_node:
         
         elif self.object_target == 'cables' and (detect.pandas().xyxy[0]['name'].eq('cables')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = [-150.81/1000, -499.34/1000, 212.73/1000]
+            self.msg_coordinates.data = [-150.81/1000, 499.34/1000, 212.73/1000]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
