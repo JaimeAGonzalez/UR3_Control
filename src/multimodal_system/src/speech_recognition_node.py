@@ -41,13 +41,9 @@ class speech_recognition_node:
             # Reset flag arm
             self.msg_reset.data = True
             self.pub_reset_arm.publish(self.msg_reset)
-            
-            self.flag_audio = input("Which object")
-            self.object_wav()
-            # playsound(self.path)
-
+        
             # Use microphone
-            with sr.AudioFile(self.path) as source:
+            with sr.Microphone() as source:
                 print("Say something...")
                     
                 # Listen to the audio
