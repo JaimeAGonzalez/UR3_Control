@@ -82,9 +82,9 @@ class arm_movement_node:
                 #self.goal_down_to_object
                 #time.sleep(4)
                 #self.goal_to_object()
-                #self.not_take = False
-                #self.msg_finish.data = True
-                #self.pub_finish_confirmation.publish( self.msg_finish)
+                self.not_take = False
+                self.msg_finish.data = True
+                self.pub_finish_confirmation.publish( self.msg_finish)
 
     def callback_reset_system(self, msg_reset):
         # Extract the object to identify            
