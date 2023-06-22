@@ -69,28 +69,28 @@ class object_recognition_node:
         t = cv2.waitKey(5)
             
         # Confirmation of identification
-        if detect.pandas().xyxy[0]['name'].values == 'motor' and self.object_target == 'motor':
+        if self.object_target == 'motor' and detect.pandas().xyxy[0]['name'].contains('motor'):
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['0', '0', '0']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
             
-        elif detect.pandas().xyxy[0]['name'].values == 'caja' and self.object_target == 'caja':
+        elif self.object_target == 'caja' and detect.pandas().xyxy[0]['name'].contains('caja'):
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['1', '1', '1']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
             
-        elif detect.pandas().xyxy[0]['name'].values == 'protoboard' and self.object_target == 'protoboard':
+        elif self.object_target == 'protoboard' and detect.pandas().xyxy[0]['name'].contains('protoboard'):
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['2', '2', '2']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
         
-        elif detect.pandas().xyxy[0]['name'].values == 'cables' and self.object_target == 'cables':
+        elif self.object_target == 'cables' and detect.pandas().xyxy[0]['name'].contains('cables'):
             # Experimental operatonal coordinates
             self.msg_coordinates.data = ['3', '3', '3']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
