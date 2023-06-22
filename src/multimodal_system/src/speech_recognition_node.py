@@ -36,13 +36,13 @@ class speech_recognition_node:
 
     def identify_word(self):
         # Ask the client
-        self.flag_init = input("Do you want to pick an object?")
+        self.flag_init = input("Do you want to pick an object? ")
         if self.flag_init == "Yes":
             # Reset flag arm
             self.msg_reset.data = True
             self.pub_reset_arm.publish(self.msg_reset)
             
-            self.flag_audio = input("Which object")
+            self.flag_audio = input("Which object? ")
             self.object_wav()
             #playsound(self.path)
 
