@@ -119,11 +119,11 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        #q = quaternion_from_euler(2.154, 2.26, -0.087)
-        #pose_goal.orientation.x = q[0]
-        #pose_goal.orientation.y = q[1]
-        #pose_goal.orientation.z = q[2]
-        #pose_goal.orientation.w = q[3]
+        q = quaternion_from_euler(2.154, 2.26, -0.087)
+        pose_goal.orientation.x = q[0]
+        pose_goal.orientation.y = q[1]
+        pose_goal.orientation.z = q[2]
+        pose_goal.orientation.w = q[3]
 
         # Operational coordinates
         pose_goal.position.x = self.goal_coordinates[0]
