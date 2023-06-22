@@ -73,15 +73,15 @@ class arm_movement_node:
             if self.flag_coordinates == True and self.not_take == True:
                 self.move_to_object()
                 time.sleep(1)
-                #self.down_to_object()
-                #time.sleep(3)
-                #self.move_to_object()
-                #time.sleep(1)
-                #self.goal_to_object()
-                #time.sleep(1)
-                #self.goal_down_to_object
-                #time.sleep(3)
-                #self.goal_to_object()
+                self.down_to_object()
+                time.sleep(4)
+                self.move_to_object()
+                time.sleep(1)
+                self.goal_to_object()
+                time.sleep(1)
+                self.goal_down_to_object
+                time.sleep(4)
+                self.goal_to_object()
                 self.not_take = False
                 self.msg_finish.data = True
                 self.pub_finish_confirmation.publish( self.msg_finish)
