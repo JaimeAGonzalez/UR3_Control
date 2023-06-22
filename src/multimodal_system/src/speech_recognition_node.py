@@ -30,7 +30,7 @@ class speech_recognition_node:
                 self.identify_word()
             else:
                 if self.flag_finish == False:
-                    print("Executing...")
+                    print("Executing pick-up: " + self.words[2])
                 else:
                     print("Object is already placed")
 
