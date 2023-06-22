@@ -40,7 +40,7 @@ class arm_movement_node:
         robot = moveit_commander.RobotCommander()
         scene = moveit_commander.PlanningSceneInterface()
         
-        self.group_name = "manipulator"
+        self.group_name = "arm"
         self.move_group = moveit_commander.MoveGroupCommander(self.group_name)
         
         display_trajectory_publisher = rospy.Publisher(
