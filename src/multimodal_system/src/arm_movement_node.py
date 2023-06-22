@@ -5,7 +5,7 @@ import time
 import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool, Float64MultiArray
 from moveit_commander.conversions import pose_to_list
 
 try:
