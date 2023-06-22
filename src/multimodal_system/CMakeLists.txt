@@ -158,10 +158,10 @@ include
 #############
 ## Testing ##
 #############
-add_executable(arm_movement_node src/arm_movement_node.cpp)
-target_link_libraries(arm_movement_node ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(arm_movement_nodev src/arm_movement_nodev.cpp)
+target_link_libraries(arm_movement_nodev ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
-install(TARGETS arm_movement_node DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS arm_movement_nodev DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 catkin_install_python(PROGRAMS src/speech_recognition_node.py
