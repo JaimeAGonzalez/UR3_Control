@@ -43,6 +43,7 @@ class speech_recognition_node:
             self.pub_reset_arm.publish(self.msg_reset)
 
             # Use microphone
+            print(sr.Microphone.list_microphone_names())
             with sr.Microphone(device_index=0) as source:
                 print("Say something...")
                     
