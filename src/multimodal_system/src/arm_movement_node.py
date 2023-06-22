@@ -5,6 +5,7 @@ import time
 import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
+from tf.transformations import quaternion_from_euler
 from std_msgs.msg import String, Bool, Float64MultiArray
 from moveit_commander.conversions import pose_to_list
 
@@ -118,9 +119,11 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        pose_goal.orientation.roll = 2.250
-        pose_goal.orientation.pitch = 2.136
-        pose_goal.orientation.yaw = -0.098
+        q = quaternion_from_euler(2.250, 2.136, -0.098)
+        pose_goal.orientation.x = q[0]
+        pose_goal.orientation.y = q[1]
+        pose_goal.orientation.z = q[2]
+        pose_goal.orientation.w = q[3]
 
         # Operational coordinates
         pose_goal.position.x = self.goal_coordinates[0]
@@ -138,9 +141,11 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        pose_goal.orientation.roll = 2.250
-        pose_goal.orientation.pitch = 2.136
-        pose_goal.orientation.yaw = -0.098
+        q = quaternion_from_euler(2.250, 2.136, -0.098)
+        pose_goal.orientation.x = q[0]
+        pose_goal.orientation.y = q[1]
+        pose_goal.orientation.z = q[2]
+        pose_goal.orientation.w = q[3]
 
         # Operational coordinates
         pose_goal.position.x = self.goal_coordinates[0]
@@ -158,9 +163,11 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        pose_goal.orientation.roll = 2.250
-        pose_goal.orientation.pitch = 2.136
-        pose_goal.orientation.yaw = -0.098
+        q = quaternion_from_euler(2.250, 2.136, -0.098)
+        pose_goal.orientation.x = q[0]
+        pose_goal.orientation.y = q[1]
+        pose_goal.orientation.z = q[2]
+        pose_goal.orientation.w = q[3]
 
         # Operational coordinates
         pose_goal.position.x = 11.99
@@ -178,9 +185,11 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        pose_goal.orientation.roll = 2.250
-        pose_goal.orientation.pitch = 2.136
-        pose_goal.orientation.yaw = -0.098
+        q = quaternion_from_euler(2.250, 2.136, -0.098)
+        pose_goal.orientation.x = q[0]
+        pose_goal.orientation.y = q[1]
+        pose_goal.orientation.z = q[2]
+        pose_goal.orientation.w = q[3]
 
         # Operational coordinates
         pose_goal.position.x = 11.99
