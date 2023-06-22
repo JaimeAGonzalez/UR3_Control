@@ -84,7 +84,7 @@ class arm_movement_node:
     def callback_reset_system(self, msg_reset):
         # Extract the object to identify            
         self.reset = msg_reset.data
-        if self.rest == True:
+        if self.reset == True:
             # We get the joint values from the group and change some of the values:
             joint_goal = self.move_group.get_current_joint_values()
             joint_goal[0] = -tau/4
