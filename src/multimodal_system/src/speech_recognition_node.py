@@ -44,7 +44,7 @@ class speech_recognition_node:
             
             self.flag_audio = input("Which object")
             self.object_wav()
-            playsound(self.path)
+            #playsound(self.path)
 
             # Use microphone
             with sr.AudioFile(self.path) as source:
