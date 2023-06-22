@@ -71,28 +71,28 @@ class object_recognition_node:
         # Confirmation of identification
         if self.object_target == 'motor' and (detect.pandas().xyxy[0]['name'].eq('motor')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = ['0', '0', '0']
+            self.msg_coordinates.data = ['0.0', '0.0', '0.0']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
             
         elif self.object_target == 'caja' and (detect.pandas().xyxy[0]['name'].eq('caja')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = ['1', '1', '1']
+            self.msg_coordinates.data = ['1.0', '1.0', '1.0']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
             
         elif self.object_target == 'protoboard' and (detect.pandas().xyxy[0]['name'].eq('protoboard')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = ['2', '2', '2']
+            self.msg_coordinates.data = ['2.0', '2.0', '2.0']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
         
         elif self.object_target == 'cables' and (detect.pandas().xyxy[0]['name'].eq('cables')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = ['3', '3', '3']
+            self.msg_coordinates.data = ['-150.81', '-499.34', '212.73']
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
