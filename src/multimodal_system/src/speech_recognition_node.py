@@ -68,7 +68,6 @@ class speech_recognition_node:
 
                         # Publish word
                         self.pub_word.publish(self.msg_word)
-                        self.rate.sleep()
                         print("Object word target identified:", self.words[2])
                     else:
                         print("Object word target not identified")
