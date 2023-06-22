@@ -36,8 +36,9 @@ class arm_movement_node:
         self.rate = rospy.Rate(10) 
 
         # Move-It
+        super(arm_movement_node, self).__init__()
         moveit_commander.roscpp_initialize(sys.argv)
-        rospy.init_node("move_group_python_interface", anonymous=True)
+        rospy.init_node("arm_movement_node", anonymous=True)
         
         robot = moveit_commander.RobotCommander()
         scene = moveit_commander.PlanningSceneInterface()
