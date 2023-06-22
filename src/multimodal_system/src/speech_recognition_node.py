@@ -2,6 +2,7 @@
 import rospy
 import sounddevice
 import speech_recognition as sr
+from playsound import playsound
 from std_msgs.msg import String, Bool
 
 class speech_recognition_node:
@@ -36,14 +37,17 @@ class speech_recognition_node:
     def identify_word(self):
         # Ask the client
         self.flag_init = input("Do you want to pick an object?")
-        
         if self.flag_init == "Yes":
             # Reset flag arm
             self.msg_reset.data = True
             self.pub_reset_arm.publish(self.msg_reset)
+            
+            self.flag_audio = input("Which object")
+            self.object_wav()
+            playsound(self.path)
 
             # Use microphone
-            with sr.Microphone(device_index=0) as source:
+            with sr.AudioFile(self.path) as source:
                 print("Say something...")
                     
                 # Listen to the audio
@@ -78,6 +82,18 @@ class speech_recognition_node:
             self.msg_reset.data = False
             self.pub_reset_arm.publish(self.msg_reset)
     
+    def object_wav(self):
+        if self.flag_audio == 'caja':
+            self.path = '/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/caja.wav'
+        elif self.flag_audio == 'cables':
+            self.path = '/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/cables.wav'
+        elif self.flag_audio == 'protoboard':
+            self.path = '/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/protoboard.wav'
+        elif self.flag_audio == 'cautin':
+            self.path = '/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/cautin.wav'
+        elif self.flag_audio == 'marcador':
+            self.path = '/home/cesim-ai/TesisJaimeMultimodal/src/UR3_Control/src/multimodal_system/src/marcador.wav'
+            
     def callback_finish(self, msg_finish):
         # Extract the confirmation of the pick-up
         self.flag_finish = msg_finish.data
