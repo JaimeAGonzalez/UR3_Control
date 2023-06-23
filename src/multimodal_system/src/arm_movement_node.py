@@ -100,8 +100,8 @@ class arm_movement_node:
             joint_goal = self.move_group.get_current_joint_values()
             joint_goal[0] = -tau/4
             joint_goal[1] = 0
-            joint_goal[2] = -tau/4
-            joint_goal[3] = -tau/4
+            joint_goal[2] = -tau/6
+            joint_goal[3] = -tau/3
             joint_goal[4] = tau/4
             joint_goal[5] = tau/4  
             
@@ -143,7 +143,7 @@ class arm_movement_node:
         pose_goal = self.move_group.get_current_pose().pose
     
         # Operational coordinates
-        pose_goal.position.z -= 0.147948
+        pose_goal.position.z -= 0.145
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
@@ -185,7 +185,7 @@ class arm_movement_node:
         # Operational coordinates
         pose_goal.position.x = 11.99
         pose_goal.position.y = 467.18
-        pose_goal.position.z = 190.43 - 132.43
+        pose_goal.position.z = 190.43 - 0.
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
