@@ -81,7 +81,7 @@ class arm_movement_node:
                 time.sleep(2)
                 self.goal_to_object()
                 time.sleep(2)
-                self.goal_down_to_object
+                self.goal_down_to_object()
                 time.sleep(4)
                 self.goal_to_object()
                 self.not_take = False
