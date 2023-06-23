@@ -153,14 +153,13 @@ class arm_movement_node:
         self.move_group.clear_pose_targets()
 
     def goal_to_object(self):
-                    # We get the joint values from the group and change some of the values
         joint_goal = self.move_group.get_current_joint_values()
-        joint_goal[0] = -tau/4
-        joint_goal[1] = 0
-        joint_goal[2] = -tau/6
-        joint_goal[3] = -tau/3
-        joint_goal[4] = tau/4
-        joint_goal[5] = tau/4  
+        joint_goal[0] = (-256)*tau/360
+        joint_goal[1] = (-128)*tau/360
+        joint_goal[2] = (-74)*tau/360
+        joint_goal[3] = (-65)*tau/360
+        joint_goal[4] = (88)*tau/360
+        joint_goal[5] = (103)*tau/360
             
         # The go command can be called with joint values, poses, or without any
         # parameters if you have already set the pose or joint target for the group
@@ -174,7 +173,7 @@ class arm_movement_node:
         pose_goal = self.move_group.get_current_pose().pose
     
         # Operational coordinates
-        pose_goal.position.z = 0.06897
+        pose_goal.position.z = 0.0707
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
