@@ -36,6 +36,7 @@ class object_recognition_node:
                 self.identify_objects()
                 
             elif self.flag_finish == True:
+                self.identify_objects()
                 self.msg_object_confirmation.data = self.flag_finish
                 self.pub_object_confirmation.publish(self.msg_object_confirmation)
                 print(self.object_target + ' is in the experimental scene')
@@ -92,7 +93,7 @@ class object_recognition_node:
         
         elif self.object_target == 'cables' and (detect.pandas().xyxy[0]['name'].eq('cables')).any():
             # Experimental operatonal coordinates
-            self.msg_coordinates.data = [-150.81/1000, 499.34/1000, 212.73/1000]
+            self.msg_coordinates.data = [-0.151, 0.499, 0.213]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
             self.flag_finish = True
