@@ -33,6 +33,7 @@ class arm_movement_node:
         self.pub_gripper_action = rospy.Publisher('pickUp_flag', String, queue_size=10)
         self.pub_finish_confirmation = rospy.Publisher('finish', Bool, queue_size=10)
         self.subs_reset_system = rospy.Subscriber('reset_arm', Bool, self.callback_reset_system)
+        self.subs_speech_object = rospy.Subscriber('word_detector', String, self.callback_speech_object)
         self.subs_coordinates_goal = rospy.Subscriber('coordinates', Float64MultiArray, self.callback_coordinates_goal)
         self.rate = rospy.Rate(10) 
 
@@ -73,9 +74,9 @@ class arm_movement_node:
             print(self.move_group.get_current_pose().pose)
             if self.flag_coordinates == True and self.not_take == True:
                 self.move_to_object()
-                #time.sleep(2)
-                #self.down_to_object()
-                #time.sleep(4)
+                time.sleep(2)
+                self.down_to_object()
+                time.sleep(4)
                 #self.move_to_object()
                 #time.sleep(2)
                 #self.goal_to_object()
@@ -87,6 +88,10 @@ class arm_movement_node:
                 self.msg_finish.data = True
                 self.pub_finish_confirmation.publish( self.msg_finish)
 
+    def callback_speech_object(self, msg_object):
+        # Extract the object to identify            
+        self.object_target = msg_object.data
+        
     def callback_reset_system(self, msg_reset):
         # Extract the object to identify            
         self.reset = msg_reset.data
@@ -117,39 +122,34 @@ class arm_movement_node:
         self.flag_coordinates = True
 
     def move_to_object(self):
-        pose_goal = geometry_msgs.msg.Pose()
+        if  self.object_target == "cables":
+            joint_goal = self.move_group.get_current_joint_values()
+            joint_goal[0] = (-94)*tau/360
+            joint_goal[1] = (-147)*tau/360
+            joint_goal[2] = (-31)*tau/360
+            joint_goal[3] = (-87)*tau/360
+            joint_goal[4] = (90)*tau/360
+            joint_goal[5] = (83)*tau/360
 
+            # The go command can be called with joint values, poses, or without any
+            # parameters if you have already set the pose or joint target for the group
+            self.move_group.go(joint_goal, wait=True)
+            
+            # Calling stop() ensures that there is no residual movement
+            self.move_group.stop()
+            self.reset = False
+
+    def down_to_object(self):
+        pose_goal = self.move_group.get_current_pose().pose
+        
         # Orientation
         pose_goal.orientation.x = -0.727
         pose_goal.orientation.y = 0.684
-        pose_goal.orientation.z = 0.034
-        pose_goal.orientation.w = 0.046
+        pose_goal.orientation.z = 0.339
+        pose_goal.orientation.w = 0.045
 
         # Operational coordinates
-        pose_goal.position.x = self.goal_coordinates[0]
-        pose_goal.position.y = self.goal_coordinates[1]
-        pose_goal.position.z = self.goal_coordinates[2]
-
-        self.move_group.set_pose_target(pose_goal)
-        plan = self.move_group.go(wait=True)
-
-        # Calling `stop()` ensures that there is no residual movement
-        self.move_group.stop()
-        self.move_group.clear_pose_targets()
-
-    def down_to_object(self):
-        pose_goal = geometry_msgs.msg.Pose()
-
-        # Orientation
-        pose_goal.orientation.x = -0.727049
-        pose_goal.orientation.y = 0.684226
-        pose_goal.orientation.z = 0.339269
-        pose_goal.orientation.w = 0.045644
-
-        # Operational coordinates
-        pose_goal.position.x = self.goal_coordinates[0]
-        pose_goal.position.y = self.goal_coordinates[1]
-        pose_goal.position.z = self.goal_coordinates[2] - 0.147948
+        pose_goal.position.z -= 0.147948
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
