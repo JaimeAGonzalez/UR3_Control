@@ -77,13 +77,13 @@ class arm_movement_node:
                 time.sleep(2)
                 self.down_to_object()
                 time.sleep(4)
-                #self.move_to_object()
-                #time.sleep(2)
-                #self.goal_to_object()
-                #time.sleep(1)
-                #self.goal_down_to_object
-                #time.sleep(4)
-                #self.goal_to_object()
+                self.move_to_object()
+                time.sleep(2)
+                self.goal_to_object()
+                time.sleep(2)
+                self.goal_down_to_object
+                time.sleep(4)
+                self.goal_to_object()
                 self.not_take = False
                 self.msg_finish.data = True
                 self.pub_finish_confirmation.publish( self.msg_finish)
@@ -153,39 +153,28 @@ class arm_movement_node:
         self.move_group.clear_pose_targets()
 
     def goal_to_object(self):
-        pose_goal = geometry_msgs.msg.Pose()
-
-        # Orientation
-        pose_goal.orientation.x = -0.727049
-        pose_goal.orientation.y = 0.684226
-        pose_goal.orientation.z = 0.339269
-        pose_goal.orientation.w = 0.045644
-
-        # Operational coordinates
-        pose_goal.position.x = 11.99
-        pose_goal.position.y = 467.18
-        pose_goal.position.z = 190.43
-
-        self.move_group.set_pose_target(pose_goal)
-        plan = self.move_group.go(wait=True)
-
-        # Calling `stop()` ensures that there is no residual movement
+                    # We get the joint values from the group and change some of the values
+        joint_goal = self.move_group.get_current_joint_values()
+        joint_goal[0] = -tau/4
+        joint_goal[1] = 0
+        joint_goal[2] = -tau/6
+        joint_goal[3] = -tau/3
+        joint_goal[4] = tau/4
+        joint_goal[5] = tau/4  
+            
+        # The go command can be called with joint values, poses, or without any
+        # parameters if you have already set the pose or joint target for the group
+        self.move_group.go(joint_goal, wait=True)
+            
+        # Calling stop() ensures that there is no residual movement
         self.move_group.stop()
-        self.move_group.clear_pose_targets()
+        self.reset = False
 
     def goal_down_to_object(self):
-        pose_goal = geometry_msgs.msg.Pose()
-
-        # Orientation
-        pose_goal.orientation.x = -0.727049
-        pose_goal.orientation.y = 0.684226
-        pose_goal.orientation.z = 0.339269
-        pose_goal.orientation.w = 0.045644
-
+        pose_goal = self.move_group.get_current_pose().pose
+    
         # Operational coordinates
-        pose_goal.position.x = 11.99
-        pose_goal.position.y = 467.18
-        pose_goal.position.z = 190.43 - 0.
+        pose_goal.position.z = 0.06897
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
