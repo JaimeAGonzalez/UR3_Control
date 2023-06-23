@@ -73,11 +73,11 @@ class arm_movement_node:
             print(self.move_group.get_current_pose().pose)
             if self.flag_coordinates == True and self.not_take == True:
                 self.move_to_object()
-                #time.sleep(1)
-                #self.down_to_object()
-                #time.sleep(4)
-                #self.move_to_object()
-                #time.sleep(1)
+                time.sleep(2)
+                self.down_to_object()
+                time.sleep(4)
+                self.move_to_object()
+                time.sleep(2)
                 #self.goal_to_object()
                 #time.sleep(1)
                 #self.goal_down_to_object
@@ -141,16 +141,15 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        q = quaternion_from_euler(2.250, 2.136, -0.098)
-        pose_goal.orientation.x = q[0]
-        pose_goal.orientation.y = q[1]
-        pose_goal.orientation.z = q[2]
-        pose_goal.orientation.w = q[3]
+        pose_goal.orientation.x = -0.727049
+        pose_goal.orientation.y = 0.684226
+        pose_goal.orientation.z = 0.339269
+        pose_goal.orientation.w = 0.045644
 
         # Operational coordinates
         pose_goal.position.x = self.goal_coordinates[0]
         pose_goal.position.y = self.goal_coordinates[1]
-        pose_goal.position.z = self.goal_coordinates[2] - 132.43
+        pose_goal.position.z = self.goal_coordinates[2] - 0.147948
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
@@ -163,11 +162,10 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        q = quaternion_from_euler(2.250, 2.136, -0.098)
-        pose_goal.orientation.x = q[0]
-        pose_goal.orientation.y = q[1]
-        pose_goal.orientation.z = q[2]
-        pose_goal.orientation.w = q[3]
+        pose_goal.orientation.x = -0.727049
+        pose_goal.orientation.y = 0.684226
+        pose_goal.orientation.z = 0.339269
+        pose_goal.orientation.w = 0.045644
 
         # Operational coordinates
         pose_goal.position.x = 11.99
@@ -185,11 +183,10 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        q = quaternion_from_euler(2.250, 2.136, -0.098)
-        pose_goal.orientation.x = q[0]
-        pose_goal.orientation.y = q[1]
-        pose_goal.orientation.z = q[2]
-        pose_goal.orientation.w = q[3]
+        pose_goal.orientation.x = -0.727049
+        pose_goal.orientation.y = 0.684226
+        pose_goal.orientation.z = 0.339269
+        pose_goal.orientation.w = 0.045644
 
         # Operational coordinates
         pose_goal.position.x = 11.99
