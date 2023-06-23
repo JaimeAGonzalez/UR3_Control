@@ -120,10 +120,10 @@ class arm_movement_node:
         pose_goal = geometry_msgs.msg.Pose()
 
         # Orientation
-        pose_goal.orientation.x = -0.727049
-        pose_goal.orientation.y = 0.684226
-        pose_goal.orientation.z = 0.339269
-        pose_goal.orientation.w = 0.045644
+        pose_goal.orientation.x = -0.727
+        pose_goal.orientation.y = 0.684
+        pose_goal.orientation.z = 0.339
+        pose_goal.orientation.w = 0.046
 
         # Operational coordinates
         #pose_goal.position.x = self.goal_coordinates[0]
