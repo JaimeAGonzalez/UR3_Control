@@ -126,9 +126,9 @@ class arm_movement_node:
         pose_goal.orientation.w = 0.396
 
         # Operational coordinates
-        #pose_goal.position.x = self.goal_coordinates[0]
-        #pose_goal.position.y = self.goal_coordinates[1]
-        #pose_goal.position.z = self.goal_coordinates[2]
+        pose_goal.position.x = self.goal_coordinates[0]
+        pose_goal.position.y = self.goal_coordinates[1]
+        pose_goal.position.z = self.goal_coordinates[2]
 
         self.move_group.set_pose_target(pose_goal)
         plan = self.move_group.go(wait=True)
