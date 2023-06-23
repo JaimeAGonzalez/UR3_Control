@@ -141,13 +141,7 @@ class arm_movement_node:
 
     def down_to_object(self):
         pose_goal = self.move_group.get_current_pose().pose
-        
-        # Orientation
-        pose_goal.orientation.x = -0.727
-        pose_goal.orientation.y = 0.684
-        pose_goal.orientation.z = 0.339
-        pose_goal.orientation.w = 0.045
-
+    
         # Operational coordinates
         pose_goal.position.z -= 0.147948
 
