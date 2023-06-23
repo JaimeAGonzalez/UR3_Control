@@ -4,6 +4,7 @@ import pandas
 import rospy
 import torch
 import numpy as np
+import time
 from std_msgs.msg import String, Bool, Float64MultiArray
 
 class object_recognition_node:
@@ -72,6 +73,7 @@ class object_recognition_node:
         # Confirmation of identification
         if self.object_target == 'motor' and (detect.pandas().xyxy[0]['name'].eq('motor')).any():
             # Experimental operatonal coordinates
+            time.sleep(3)
             self.msg_coordinates.data = [0.0, 0.0, 0.0]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
@@ -79,6 +81,7 @@ class object_recognition_node:
             
         elif self.object_target == 'caja' and (detect.pandas().xyxy[0]['name'].eq('caja')).any():
             # Experimental operatonal coordinates
+            time.sleep(3)
             self.msg_coordinates.data = [1.0, 1.0, 1.0]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
@@ -86,6 +89,7 @@ class object_recognition_node:
             
         elif self.object_target == 'protoboard' and (detect.pandas().xyxy[0]['name'].eq('protoboard')).any():
             # Experimental operatonal coordinates
+            time.sleep(3)
             self.msg_coordinates.data = [2.0, 2.0, 2.0]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
@@ -93,6 +97,7 @@ class object_recognition_node:
         
         elif self.object_target == 'cables' and (detect.pandas().xyxy[0]['name'].eq('cables')).any():
             # Experimental operatonal coordinates
+            time.sleep(3)
             self.msg_coordinates.data = [0.163157, 0.502895, 0.216378]
             self.pub_coordinates_arm.publish(self.msg_coordinates)
             self.not_identify = False
