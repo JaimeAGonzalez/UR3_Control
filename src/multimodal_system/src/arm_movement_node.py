@@ -70,6 +70,7 @@ class arm_movement_node:
 
         # Extract target object 
         while not rospy.is_shutdown():
+            print(self.move_group.get_current_pose().pose)
             if self.flag_coordinates == True and self.not_take == True:
                 self.move_to_object()
                 #time.sleep(1)
